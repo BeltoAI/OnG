@@ -1,0 +1,77 @@
+@import "tailwindcss";
+
+@theme {
+  --color-charcoal: #FFFFFF;
+  --color-gold: #FF6B00;
+  --color-surface-dark: #F8F9FA;
+  --color-surface-mid: #FFFFFF;
+  --color-line: #E9ECEF;
+  --color-status-red: #DC3545;
+  --color-text-main: #1A1D21;
+  --color-secure-blue: #007BFF;
+  --color-nom-gray: #6C757D;
+  
+  --font-sans: 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'Courier New', Courier, monospace;
+
+  /* Increase base font sizes */
+  --text-xs: 0.875rem; /* 14px */
+  --text-sm: 1.125rem; /* 18px */
+  --text-base: 1.25rem; /* 20px */
+  --text-lg: 1.5rem; /* 24px */
+  --text-xl: 1.875rem; /* 30px */
+  --text-2xl: 2.25rem; /* 36px */
+}
+
+.markdown-body {
+  @apply text-text-main;
+}
+
+.markdown-body strong {
+  @apply text-gold font-black;
+}
+
+.markdown-body p {
+  @apply mb-2 last:mb-0;
+}
+
+@layer base {
+  body {
+    @apply bg-charcoal text-text-main font-sans antialiased overflow-hidden text-sm;
+  }
+}
+
+@layer components {
+  .industrial-border {
+    @apply border border-line;
+  }
+  
+  .glossy-panel {
+    @apply bg-surface-mid/80 backdrop-blur-[4px] border border-line;
+  }
+
+  .glow-gold {
+    @apply shadow-[0_0_15px_rgba(245,166,35,0.15)];
+  }
+
+  .status-pill {
+    @apply flex items-center gap-2 px-3 py-1.5 rounded-[2px] text-[10px] font-black tracking-tighter uppercase;
+  }
+
+  .btn-pill {
+    @apply border border-gold/30 rounded-[4px] px-3 py-1 text-[11px] uppercase cursor-pointer transition-all duration-200 hover:border-gold hover:bg-gold/10;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-charcoal;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-line rounded-none hover:bg-gold/40;
+}

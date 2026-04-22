@@ -1,0 +1,5 @@
+{
+  "name": "BELTO Diagnostic Platform",
+  "description": "Industrial-grade incident management and diagnostic platform for rig hardware troubleshooting, featuring AI assistance, expert chat, and rich media archival.",
+  "requestFramePermissions": []
+}
