@@ -13,6 +13,7 @@
   
   --font-sans: 'Helvetica Neue', Arial, sans-serif;
   --font-mono: 'Courier New', Courier, monospace;
+  --font-serif: 'Georgia', 'Times New Roman', serif;
 
   /* Increase base font sizes */
   --text-xs: 0.875rem; /* 14px */

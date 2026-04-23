@@ -19,47 +19,20 @@ interface Manual {
 
 const MANUALS: Manual[] = [
   {
-    id: 'BELTO-OP-001',
-    title: 'Sovereign Hub v3 Operations Manual',
+    id: 'MANUAL-001',
+    title: 'Offshore Resource Catalog',
     category: 'OPERATIONS',
-    description: 'Core operational guidelines for managing RIG hardware clusters and telemetry sync protocols.',
-    pdfUrl: 'https://www.api.org/~/media/Files/Publications/Exploration/API_Bul_75L.pdf',
-    lastUpdated: '2024-01-15',
-    content: [
-      'SECTION 1.0: SYSTEM INITIALIZATION',
-      'Ensure shunt current is stabilized at 1.45A before engaging telemetry uplink.',
-      'RSC status must be verified as NOMINAL prior to drilling engagement.',
-      'SECTION 2.0: FAULT ESCALATION',
-      'In the event of an FPSR trip, the Sovereign Assistant must be engaged for micro-firmware correction.',
-      'Terminal states (CLOSED/ARCHIVED) require supervisor sign-off via BELTO-SEC-004.'
-    ]
+    description: 'Local sector publication reference archive.',
+    pdfUrl: '/OnG_1.pdf',
+    lastUpdated: '2025-01-01',
   },
   {
-    id: 'BELTO-MNT-042',
-    title: 'FPSR Grid Maintenance & Safety',
+    id: 'MANUAL-002',
+    title: 'Technical Staff Incident Report',
     category: 'MAINTENANCE',
-    description: 'Technical maintenance schedule for high-voltage sector coupling and capacitor bank grounding.',
-    pdfUrl: 'https://www.energy.gov/sites/prod/files/2013/05/f0/Safety_Manual_Section_2.pdf',
-    lastUpdated: '2023-11-20',
-    content: [
-      'SECTION 4.2: CAPACITOR BANK GROUNDING',
-      'Prior to Sector 4 entry, all high-voltage capacitors must be manually discharged using the BELTO-ST-12 grounding rod.',
-      'Verify SNR signals are above 8dB post-firmware update to prevent SNR Low timeouts.'
-    ]
-  },
-  {
-    id: 'BELTO-PRT-099',
-    title: 'Node Communication Protocol Interface',
-    category: 'PROTOCOL',
-    description: 'Low-latency telemetry interface specifications (RSC/RSX/PSC) for offshore rig monitoring.',
-    pdfUrl: 'https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-82r3.pdf',
-    lastUpdated: '2024-03-01',
-    content: [
-      'APPENDIX A: TELEMETRY ERROR TABLES',
-      'Error 0x44: SnR Underflow. Trigger SNR SNR Low fault.',
-      'Error 0x88: Telemetry Desync. Logic gate restart required.',
-      'Error 0xFF: Catastrophic Sector Bleed. Immediate RIG evacuation protocol 12.'
-    ]
+    description: 'Deep technical analysis of pressure containment and rig safety protocols.',
+    pdfUrl: '/OnG_2.pdf',
+    lastUpdated: '2024-11-12',
   }
 ];
 
@@ -188,45 +161,24 @@ export default function TechnicalLibrary() {
                   </div>
                </div>
 
-               {/* Simulated PDF Viewer */}
-               <div className="flex-1 bg-white overflow-y-auto p-12 custom-scrollbar">
-                  <div className="max-w-3xl mx-auto shadow-2xl border border-gray-200 min-h-[140%] p-16 flex flex-col gap-10">
-                    <div className="border-b-4 border-black pb-8 flex justify-between items-start">
-                       <div>
-                          <h1 className="text-4xl font-black text-black tracking-tighter uppercase mb-2">BELTO INDUSTRIAL</h1>
-                          <p className="text-xs font-mono text-gray-500 uppercase font-bold tracking-widest">{selectedManual.id} — CONFIDENTIAL</p>
-                       </div>
-                       <div className="text-right">
-                          <p className="text-xs font-black text-black uppercase">Approved for Offshore Use</p>
-                          <p className="text-[10px] text-gray-500">REV: {selectedManual.lastUpdated}</p>
-                       </div>
-                    </div>
-
-                    <div className="space-y-12">
-                       <h2 className="text-2xl font-black text-black uppercase border-b border-gray-200 pb-4">{selectedManual.title}</h2>
-                       <div className="space-y-8">
-                          {selectedManual.content?.map((text, idx) => (
-                            <p 
-                              key={idx} 
-                              className={`text-sm leading-relaxed ${text.startsWith('SECTION') ? 'font-black uppercase text-black pt-4' : 'text-gray-700 italic'}`}
-                            >
-                               {text}
-                            </p>
-                          ))}
-                          <div className="p-8 bg-gray-50 border-line border rounded-sm font-mono text-[11px] text-gray-500 leading-relaxed uppercase">
-                             Warning: This record is strictly for Sovereign Node clusters. 
-                             Local offline execution requires manual telemetry calibration at Node 04.
-                             Standard rig latency is 14ms. SNR snr values must be monitored via PSC detector.
-                          </div>
-                       </div>
-                    </div>
-
-                    <div className="mt-auto pt-20 flex justify-between items-end border-t border-gray-100 italic text-gray-400 text-[10px]">
-                       <span>Digitized Archive — BELTO CLOUD SYNC: ERROR (OFFLINE)</span>
-                       <span>Page 01 of 124</span>
-                    </div>
-                  </div>
-               </div>
+                {/* Real PDF Embedded Viewer */}
+                <div className="flex-1 bg-charcoal relative">
+                   <iframe 
+                      src={`${selectedManual.pdfUrl}#toolbar=1&navpanes=1&scrollbar=1`}
+                      className="w-full h-full border-0 grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-700"
+                      title={selectedManual.title}
+                      referrerPolicy="no-referrer"
+                   />
+                   
+                   {/* Local Navigation Overlay (Only visible if the iframe fails or for aesthetic) */}
+                   <div className="absolute top-4 right-8 pointer-events-none">
+                      <div className="px-4 py-2 bg-black/80 backdrop-blur-md border border-gold/30 rounded-sm">
+                         <p className="text-[10px] font-black text-gold uppercase tracking-widest">
+                            Sovereign View // {selectedManual.id}
+                         </p>
+                      </div>
+                   </div>
+                </div>
             </div>
           </motion.div>
         )}

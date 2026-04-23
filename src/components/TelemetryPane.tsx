@@ -131,16 +131,21 @@ export default function TelemetryPane({ ticket }: TelemetryPaneProps) {
             >
                <div className="h-full bg-surface-mid border border-line rounded-lg overflow-hidden flex flex-col shadow-2xl">
                   <div className="p-4 bg-surface-dark border-b border-line flex items-center justify-between">
-                     <span className="text-[10px] font-black text-gold uppercase tracking-widest">Type-K-BOP-Manual.pdf</span>
-                     <div className="flex gap-2">
+                     <span className="text-[10px] font-black text-gold uppercase tracking-widest leading-none">OnG_2.pdf // Technical Staff Incident Report</span>
+                     <div className="flex gap-2 shrink-0">
                         <button className="p-2 border border-line text-gray-500 hover:text-gold transition-colors"><Download size={14}/></button>
-                        <button className="p-2 border border-line text-gray-500 hover:text-gold transition-colors"><ExternalLink size={14}/></button>
+                        <button 
+                          onClick={() => window.open('/OnG_2.pdf', '_blank')}
+                          className="p-2 border border-line text-gray-500 hover:text-gold transition-colors"
+                        >
+                          <ExternalLink size={14}/>
+                        </button>
                      </div>
                   </div>
-                  <div className="flex-1 bg-white">
+                  <div className="flex-1 bg-charcoal">
                     <iframe 
-                      src="https://www.api.org/~/media/Files/Publications/Exploration/API_Bul_75L.pdf#toolbar=0" 
-                      className="w-full h-full opacity-80 grayscale"
+                      src="/OnG_2.pdf#toolbar=0" 
+                      className="w-full h-full opacity-80 shadow-inner"
                       title="Sovereign Technical Manual"
                       referrerPolicy="no-referrer"
                     />
